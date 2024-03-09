@@ -1,5 +1,3 @@
-`include "FPU_PACK.v"
-
 module Exception_Module_tb();
     //Input registers
     reg[7:0] in0;
@@ -8,11 +6,11 @@ module Exception_Module_tb();
     //Output signal
     wire out;
 
-    Exception_Module DUT (_ADDITION, in0, in1, out);
+    Exception_Module DUT (`_ADDITION, in0, in1, out);
 
   	initial begin    
         // Set input signals
-        in0 = _NAN;
+        in0 = `_PLUS_INF;
         in1 = 8'b00000000;
 
         // Wait for a clock cycle
@@ -20,9 +18,9 @@ module Exception_Module_tb();
 
         // Check output signal: should yield exception true
         assert (out === 1)
-          $display("Pass: Output signal is correct");
+          $display("Pass: Exception caught correctly");
         else
-        $display("Fail: Output signal is incorrect");
+          $display("Fail: No exception caught");
 		#100 $finish;
     end
 endmodule;

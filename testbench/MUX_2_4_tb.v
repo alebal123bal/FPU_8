@@ -1,3 +1,7 @@
+`include "FPU_PACK.v"
+`include "EXCEPTION_MODULE.v"
+`include "tb_EXCE.v"
+
 module MUX_2_4_tb();
     //Input registers
     reg[7:0] in0;

@@ -1,4 +1,4 @@
-package FPU_8;
+package FPU_8_pkg;
     //Definitions for operation selection encoding
     `define _ADDITION 2'b00
 
