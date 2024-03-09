@@ -13,3 +13,4 @@ module MUX_2_4(Sel, S00, S01, S10, S11, Y);
             default: Y = S00;
         endcase
     end
+endmodule
