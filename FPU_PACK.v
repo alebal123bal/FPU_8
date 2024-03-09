@@ -1,4 +1,7 @@
 package FPU_8;
+    //Definitions for operation selection encoding
+    `define _ADDITION 2'b00
+
     //Define constants for M5E2 format FP8
     `define _PLUS_INF 8'b01111100
     `define _MINUS_INF 8'b11111100

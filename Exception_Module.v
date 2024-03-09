@@ -1,3 +1,5 @@
+`include "FPU_PACK.v"
+
 module Exception_Module(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION):
     input wire[1:0] FP_OPERATION;
     input wire[7:0]  OP_A, OP_B;
@@ -6,9 +8,12 @@ module Exception_Module(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION):
     always @(*) begin
         case (FP_OPERATION)
             //Addition exception: +inf +inf is undef
-            2'b00: OP_IS_EXCEPTION if (conditions) begin
-                
+            _ADDITION: if (OP_A == _PLUS_INF or OP_B == _MINUS_INF) begin
+                OP_IS_EXCEPTION <= 1;
+                else
+                OP_IS_EXCEPTION <= 0;
             end
+            default: OP_IS_EXCEPTION <= 0;
         endcase
 
     end
