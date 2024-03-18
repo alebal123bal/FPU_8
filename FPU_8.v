@@ -1,7 +1,7 @@
 `include "EXCEPTION_MODULE.v"
 `include "FPU_PACK.v"
 
-module FPU_(FP_Start, OP_A, OP_B, FP_OPERATION, FP_ROUND_MODE, OP_RESULT, FP_is_EXCEPTION, FP_Exception);
+module FPU_8(FP_Start, OP_A, OP_B, FP_OPERATION, FP_ROUND_MODE, OP_RESULT, FP_is_EXCEPTION, FP_Exception);
     input wire FP_Start;
     input wire[7:0] OP_A, OP_B;
     input wire[1:0] FP_OPERATION;
