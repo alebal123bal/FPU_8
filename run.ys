@@ -1,0 +1,29 @@
+# Read the Verilog file
+read_verilog design.sv
+
+# Select the top module
+hierarchy -top FPU_8
+
+# Elaborate the design
+proc
+
+# Optimize the design
+opt
+
+# Map memories
+memory -nomap
+
+# Optimize the design again
+opt
+
+# Detect FSMs
+fsm
+
+# Optimize the design again
+opt
+
+# Show the netlist with Graphviz
+show -format dot -prefix netlist
+
+# Write the synthesized design to a file
+write_verilog synthesized_design.v
