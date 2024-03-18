@@ -31,7 +31,7 @@ module Exception_Module_tb();
         else
           $display("Fail: No exception caught");
 
-		#100 $finish;
+		    #100 $finish;
     end
 endmodule;
 

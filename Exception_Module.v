@@ -1,3 +1,4 @@
+`include "FPU_PACK.v"
 `include "CHECK_NAN.v"
 `include "CHECK_ZERO.v"
 `include "CHECK_INF.v"

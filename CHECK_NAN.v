@@ -1,3 +1,5 @@
+`include "FPU_PACK.v"
+
 module CHECK_NAN(fp8_in, is_NaN);
     input wire[7:0] fp8_in;
     output reg is_NaN;
