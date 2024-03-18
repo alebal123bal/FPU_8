@@ -15,11 +15,11 @@ module Exception_Module_tb();
     Exception_Module DUT3 (`_DIVISION, in0, in1, out3);
 
   	initial begin
-        $dumpfile("my_waveform.vcd");
+        $dumpfile("exception_waveform.vcd");
         $dumpvars(0, Exception_Module_tb);
 
         // Set input signals
-        in0 = `_PLUS_INF;
+        in0 = `_NAN_0;
         in1 = 8'b00000000;
 
         // Wait for a clock cycle
