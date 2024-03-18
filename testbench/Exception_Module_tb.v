@@ -1,4 +1,4 @@
-module Exception_Module_tb();
+module EXCEPTION_MODULE_TB();
     //Input registers
     reg[7:0] in0;
     reg[7:0] in1;
@@ -9,14 +9,14 @@ module Exception_Module_tb();
     wire out2;
     wire out3;
 
-    Exception_Module DUT0 (`_ADDITION, in0, in1, out0);
-    Exception_Module DUT1 (`_SUBTRACTION, in0, in1, out1);
-    Exception_Module DUT2 (`_MULTIPLICATION, in0, in1, out2);
-    Exception_Module DUT3 (`_DIVISION, in0, in1, out3);
+    EXCEPTION_MODULE DUT0 (`_ADDITION, in0, in1, out0);
+    EXCEPTION_MODULE DUT1 (`_SUBTRACTION, in0, in1, out1);
+    EXCEPTION_MODULE DUT2 (`_MULTIPLICATION, in0, in1, out2);
+    EXCEPTION_MODULE DUT3 (`_DIVISION, in0, in1, out3);
 
   	initial begin
         $dumpfile("exception_waveform.vcd");
-        $dumpvars(0, Exception_Module_tb);
+        $dumpvars(0, EXCEPTION_MODULE_TB);
 
         // Set input signals
         in0 = `_NAN_0;
