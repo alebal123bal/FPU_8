@@ -11,5 +11,5 @@ module FPU_(FP_Start, OP_A, OP_B, FP_OPERATION, FP_ROUND_MODE, OP_RESULT, FP_is_
     output reg FP_IS_EXCEPTION;
     output reg[1:0] FP_Exception;
 
-    Exception_Module my_mod(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION);
+    EXCEPTION_MODULE my_mod(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION);
 endmodule
