@@ -3,7 +3,7 @@ module CHECK_NAN(fp8_in, is_NaN);
     output reg is_NaN;
 
     always@(*) begin
-        is_NaN = (fp8_in == `_NAN_0) ||
+        is_NaN <= (fp8_in == `_NAN_0) ||
         (fp8_in == `_NAN_1) ||
         (fp8_in == `_NAN_2) ||
         (fp8_in == `_NAN_3) ||
