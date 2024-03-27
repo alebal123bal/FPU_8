@@ -17,14 +17,14 @@
 `define _ZERO_1 8'b10000000
 
 //Define exceptions codes
-`define _NO_EXCE 2'b000
-`define _qNAN_EXCE 2'b001
-`define _sNAN_EXCE 2'b010
-`define _INEXACT_EXCE 2'b011
-`define _OVERFLOW_EXCE 2'b100
-`define _UNDERFLOW_EXCE 2'b101
-`define _ZERO_DIV_EXCE 2'b110
-`define _INF_EXCE 2'b111
+`define _NO_EXCE 3'b000
+`define _qNAN_EXCE 3'b001
+`define _sNAN_EXCE 3'b010
+`define _INEXACT_EXCE 3'b011
+`define _OVERFLOW_EXCE 3'b100
+`define _UNDERFLOW_EXCE 3'b101
+`define _ZERO_DIV_EXCE 3'b110
+`define _INF_EXCE 3'b111
 //`define _ZERO_EXCE 2'bxxx missing; not necessary however
 //Can be made dedicated
 
