@@ -3,10 +3,11 @@
 `include "CHECK_ZERO.v"
 `include "CHECK_INF.v"
 
-module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION);
+module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     input wire[1:0] FP_OPERATION;
     input wire[7:0]  OP_A, OP_B;
     output reg OP_IS_EXCEPTION;
+    output reg[1:0] FP_EXCE;
 
     wire is_NaN_A;    //Output of the CHECK_NAN module for first input
     wire is_NaN_B;    //Output of the CHECK_NAN module for second input
@@ -47,7 +48,8 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION);
                 OP_IS_EXCEPTION <= 0;
             end
 
-            default: OP_IS_EXCEPTION <= 0;
+            default: begin OP_IS_EXCEPTION <= 0;
+                    FP_EXCE<="00"; end
         endcase
 
     end
