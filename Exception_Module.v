@@ -48,8 +48,10 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
                 OP_IS_EXCEPTION <= 0;
             end
 
-            default: begin OP_IS_EXCEPTION <= 0;
-                    FP_EXCE<="00"; end
+            default: begin 
+                OP_IS_EXCEPTION <= 0;
+                FP_EXCE<="00"; 
+            end
         endcase
 
     end

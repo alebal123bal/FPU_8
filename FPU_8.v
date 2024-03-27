@@ -14,6 +14,7 @@ module FPU_8(FP_Start, OP_A, OP_B, FP_OPERATION, FP_ROUND_MODE, OP_RESULT, OP_IS
     EXCEPTION_MODULE my_mod(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION);
 
     always@(*) begin
+        OP_RESULT <= OP_A;
     end
     
 endmodule
