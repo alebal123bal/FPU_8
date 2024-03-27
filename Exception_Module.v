@@ -7,7 +7,7 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     input wire[1:0] FP_OPERATION;
     input wire[7:0]  OP_A, OP_B;
     output reg OP_IS_EXCEPTION;
-    output reg[1:0] FP_EXCE;
+    output reg[2:0] FP_EXCE;
 
     wire is_NaN_A;    //Output of the CHECK_NAN module for first input
     wire is_NaN_B;    //Output of the CHECK_NAN module for second input
@@ -18,14 +18,14 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     wire is_INF_A;    //Output of the CHECK_INF module for first input
     wire is_INF_B;    //Output of the CHECK_INF module for second input
 
-    CHECK_NAN nan_checker_0(OP_A, is_NaN_A);
-    CHECK_NAN nan_checker_1(OP_B, is_NaN_B);
+    CHECK_NAN nan_checker_A(OP_A, is_NaN_A);
+    CHECK_NAN nan_checker_B(OP_B, is_NaN_B);
 
-    CHECK_ZERO zero_checker_0(OP_A, is_ZERO_A);
-    CHECK_ZERO zero_checker_1(OP_B, is_ZERO_B);
+    CHECK_ZERO zero_checker_A(OP_A, is_ZERO_A);
+    CHECK_ZERO zero_checker_B(OP_B, is_ZERO_B);
 
-    CHECK_INF inf_checker_0(OP_A, is_INF_A);
-    CHECK_INF inf_checker_1(OP_B, is_INF_B);
+    CHECK_INF inf_checker_A(OP_A, is_INF_A);
+    CHECK_INF inf_checker_B(OP_B, is_INF_B);
 
     always @(*) begin
         case (FP_OPERATION)
