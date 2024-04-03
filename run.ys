@@ -1,15 +1,11 @@
 read_verilog FPU_PACK.v
-#read_verilog MUX_2_4.v
-#read_verilog CHECK_INF.v
-#read_verilog CHECK_NAN.v
-#read_verilog CHECK_ZERO.v
-#read_verilog EXCEPTION_MODULE.v
 read_verilog design.sv
 
 hierarchy -check -top FPU_8
 
 proc
 opt
+#TODO: synth without flattening everything
 flatten
 opt
 memory

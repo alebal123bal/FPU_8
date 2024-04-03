@@ -14,6 +14,7 @@ module EXCEPTION_MODULE_TB();
     EXCEPTION_MODULE DUT2 (`_MULTIPLICATION, in0, in1, out2);
     EXCEPTION_MODULE DUT3 (`_DIVISION, in0, in1, out3);
 
+    //TODO: write testcases for all
   	initial begin
         $dumpfile("exception_waveform.vcd");
         $dumpvars(0, EXCEPTION_MODULE_TB);
