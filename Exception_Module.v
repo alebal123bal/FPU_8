@@ -31,55 +31,55 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
         case (FP_OPERATION)
             //Addition exception: +inf -inf is undef in any order, but +inf +inf is valid
             `_ADDITION: if (is_NaN_A || is_NaN_B) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_qNAN_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_qNAN_EXCE;
             end else if ((OP_A == `_PLUS_INF && OP_B == `_MINUS_INF) || (OP_A == `_MINUS_INF && OP_B == `_PLUS_INF)) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_INF_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_INF_EXCE;
             end else begin
-                OP_IS_EXCEPTION <= 0;
-                FP_EXCE<=`_NO_EXCE;
+                OP_IS_EXCEPTION = 0;
+                FP_EXCE=`_NO_EXCE;
             end
 
             //Subtraction exception: +inf - (+inf) is undef in any order, but -inf -(+inf) is valid
             `_SUBTRACTION: if (is_NaN_A || is_NaN_B) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_qNAN_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_qNAN_EXCE;
             end else if (OP_A == `_PLUS_INF && OP_B == `_PLUS_INF) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_INF_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_INF_EXCE;
             end else begin
-                OP_IS_EXCEPTION <= 0;
-                FP_EXCE<=`_NO_EXCE;
+                OP_IS_EXCEPTION = 0;
+                FP_EXCE=`_NO_EXCE;
             end
 
             //Multiplication exception: any zero times any inf
             `_MULTIPLICATION: if (is_NaN_A || is_NaN_B) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_qNAN_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_qNAN_EXCE;
             end else if ((is_ZERO_A && is_INF_B) || (is_INF_A && is_ZERO_B)) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_INF_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_INF_EXCE;
             end else begin
-                OP_IS_EXCEPTION <= 0;
-                FP_EXCE<=`_NO_EXCE;
+                OP_IS_EXCEPTION = 0;
+                FP_EXCE=`_NO_EXCE;
             end
 
             //Division exception: divide by zero
             `_DIVISION: if (is_NaN_A || is_NaN_B) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_qNAN_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_qNAN_EXCE;
             end else if (is_ZERO_B) begin
-                OP_IS_EXCEPTION <= 1;
-                FP_EXCE<=`_ZERO_DIV_EXCE;
+                OP_IS_EXCEPTION = 1;
+                FP_EXCE=`_ZERO_DIV_EXCE;
             end else begin
-                OP_IS_EXCEPTION <= 0;
-                FP_EXCE<=`_NO_EXCE;
+                OP_IS_EXCEPTION = 0;
+                FP_EXCE=`_NO_EXCE;
             end
 
             default: begin 
-                OP_IS_EXCEPTION <= 0;
-                FP_EXCE<=`_NO_EXCE; 
+                OP_IS_EXCEPTION = 0;
+                FP_EXCE=`_NO_EXCE; 
             end
         endcase
 
