@@ -67,7 +67,11 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
             //Multiplication exception: any zero times any inf
             `_MULTIPLICATION: if (is_NaN_A || is_NaN_B) begin
                 OP_IS_EXCEPTION = 1;
-                FP_EXCE=`_qNAN_EXCE;
+                if (qs_NaN_A == 1'b1) begin
+                    FP_EXCE=`_qNAN_EXCE;
+                end else begin
+                    FP_EXCE=`_sNAN_EXCE;
+                end
             end else if ((is_ZERO_A && is_INF_B) || (is_INF_A && is_ZERO_B)) begin
                 OP_IS_EXCEPTION = 1;
                 FP_EXCE=`_INF_EXCE;
@@ -79,7 +83,11 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
             //Division exception: divide by zero
             `_DIVISION: if (is_NaN_A || is_NaN_B) begin
                 OP_IS_EXCEPTION = 1;
-                FP_EXCE=`_qNAN_EXCE;
+                if (qs_NaN_A == 1'b1) begin
+                    FP_EXCE=`_qNAN_EXCE;
+                end else begin
+                    FP_EXCE=`_sNAN_EXCE;
+                end
             end else if (is_ZERO_B) begin
                 OP_IS_EXCEPTION = 1;
                 FP_EXCE=`_ZERO_DIV_EXCE;
