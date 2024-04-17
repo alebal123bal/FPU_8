@@ -33,8 +33,8 @@ module EXCEPTION_MODULE_TB();
         // Wait for a clock cycle
         #10;
 
-        //When one input is NAN, all 4 elementary operations must yield exception
-        assert (out0 === 1 && out1 === 1 && out2 === 1 && out3 === 1)
+        //When one input is sNAN, all 4 elementary operations must yield exception
+        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE)
           $display("Pass: Exceptions for input 0 NAN caught correctly");
         else
           $display("Fail: No exception caught");
@@ -43,12 +43,15 @@ module EXCEPTION_MODULE_TB();
         in0 = 8'b00000000;
         in1 = `_NAN_0;
 
-        //When one input is NAN, all 4 elementary operations must yield exception
-        assert (out0 === 1 && out1 === 1 && out2 === 1 && out3 === 1)
+        //When one input is sNAN, all 4 elementary operations must yield exception
+        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE)
           $display("Pass: Exceptions for input 0 NAN caught correctly");
         else
           $display("Fail: No exception caught");
 
+        #10;
+        in0 = 8'b00000000;
+        in1 = 8'b00000000;
 
 		    #100 $finish;
     end

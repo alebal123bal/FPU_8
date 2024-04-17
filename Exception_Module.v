@@ -35,7 +35,7 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
             //Addition exception: +inf -inf is undef in any order, but +inf +inf is valid
             `_ADDITION: if (is_NaN_A || is_NaN_B) begin
                 OP_IS_EXCEPTION = 1;
-                if qs_NaN_A begin
+                if (qs_NaN_A == 1'b1) begin
                     FP_EXCE=`_qNAN_EXCE;
                 end else begin
                     FP_EXCE=`_sNAN_EXCE;
@@ -51,7 +51,7 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
             //Subtraction exception: +inf - (+inf) is undef in any order, but -inf -(+inf) is valid
             `_SUBTRACTION: if (is_NaN_A || is_NaN_B) begin
                 OP_IS_EXCEPTION = 1;
-                if qs_NaN_A begin
+                if (qs_NaN_A == 1'b1) begin
                     FP_EXCE=`_qNAN_EXCE;
                 end else begin
                     FP_EXCE=`_sNAN_EXCE;
