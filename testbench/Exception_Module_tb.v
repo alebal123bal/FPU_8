@@ -4,15 +4,22 @@ module EXCEPTION_MODULE_TB();
     reg[7:0] in1;
 
     //Output signals
+
+    //Exception caught
     wire out0;
     wire out1;
     wire out2;
     wire out3;
+    //What exception
+    wire[2:0] fp_exce_0;
+    wire[2:0] fp_exce_1;
+    wire[2:0] fp_exce_2;
+    wire[2:0] fp_exce_3;
 
-    EXCEPTION_MODULE DUT0 (`_ADDITION, in0, in1, out0);
-    EXCEPTION_MODULE DUT1 (`_SUBTRACTION, in0, in1, out1);
-    EXCEPTION_MODULE DUT2 (`_MULTIPLICATION, in0, in1, out2);
-    EXCEPTION_MODULE DUT3 (`_DIVISION, in0, in1, out3);
+    EXCEPTION_MODULE DUT0 (`_ADDITION, in0, in1, out0, fp_exce_0);
+    EXCEPTION_MODULE DUT1 (`_SUBTRACTION, in0, in1, out1, fp_exce_1);
+    EXCEPTION_MODULE DUT2 (`_MULTIPLICATION, in0, in1, out2, fp_exce_2);
+    EXCEPTION_MODULE DUT3 (`_DIVISION, in0, in1, out3, fp_exce_3);
 
     //TODO: write testcases for all
   	initial begin
@@ -26,11 +33,22 @@ module EXCEPTION_MODULE_TB();
         // Wait for a clock cycle
         #10;
 
-        // Check output signal: should yield exception true
-        assert (out0 === 1 && out1 === 1)
-          $display("Pass: Exceptions caught correctly");
+        //When one input is NAN, all 4 elementary operations must yield exception
+        assert (out0 === 1 && out1 === 1 && out2 === 1 && out3 === 1)
+          $display("Pass: Exceptions for input 0 NAN caught correctly");
         else
           $display("Fail: No exception caught");
+
+        #10;
+        in0 = 8'b00000000;
+        in1 = `_NAN_0;
+
+        //When one input is NAN, all 4 elementary operations must yield exception
+        assert (out0 === 1 && out1 === 1 && out2 === 1 && out3 === 1)
+          $display("Pass: Exceptions for input 0 NAN caught correctly");
+        else
+          $display("Fail: No exception caught");
+
 
 		    #100 $finish;
     end

@@ -9,8 +9,11 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     output reg OP_IS_EXCEPTION;
     output reg[2:0] FP_EXCE;
 
-    wire is_NaN_A;    //Output of the CHECK_NAN module for first input
-    wire is_NaN_B;    //Output of the CHECK_NAN module for second input
+    wire is_NaN_A;    //Output of the CHECK_NAN module for first input: is it NaN
+    wire is_NaN_B;    //Output of the CHECK_NAN module for second input: is it NaN
+
+    wire qs_NaN_A;    //Output of the CHECK_NAN module for first input: type of NaN
+    wire qs_NaN_B;    //Output of the CHECK_NAN module for second input: type of NaN
 
     wire is_ZERO_A;    //Output of the CHECK_ZERO module for first input
     wire is_ZERO_B;    //Output of the CHECK_ZERO module for second input
@@ -18,8 +21,8 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     wire is_INF_A;    //Output of the CHECK_INF module for first input
     wire is_INF_B;    //Output of the CHECK_INF module for second input
 
-    CHECK_NAN nan_checker_A(OP_A, is_NaN_A);
-    CHECK_NAN nan_checker_B(OP_B, is_NaN_B);
+    CHECK_NAN nan_checker_A(OP_A, is_NaN_A, qs_NaN_A);
+    CHECK_NAN nan_checker_B(OP_B, is_NaN_B, qs_NaN_B);
 
     CHECK_ZERO zero_checker_A(OP_A, is_ZERO_A);
     CHECK_ZERO zero_checker_B(OP_B, is_ZERO_B);
@@ -32,7 +35,7 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
             //Addition exception: +inf -inf is undef in any order, but +inf +inf is valid
             `_ADDITION: if (is_NaN_A || is_NaN_B) begin
                 OP_IS_EXCEPTION = 1;
-                FP_EXCE=`_qNAN_EXCE;
+                FP_EXCE=`_qNAN_EXCE;    //TODO: Always qNAN is returned. sNAN?
             end else if ((OP_A == `_PLUS_INF && OP_B == `_MINUS_INF) || (OP_A == `_MINUS_INF && OP_B == `_PLUS_INF)) begin
                 OP_IS_EXCEPTION = 1;
                 FP_EXCE=`_INF_EXCE;
