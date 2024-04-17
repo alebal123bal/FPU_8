@@ -34,7 +34,7 @@ module EXCEPTION_MODULE_TB();
         #10;
 
         //When one input is sNAN, all 4 elementary operations must yield exception
-        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE)
+        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE && fp_exce_2 === `_sNAN_EXCE && fp_exce_3 === `_sNAN_EXCE)
           $display("Pass: Exceptions for input 0 NAN caught correctly");
         else
           $display("Fail: No exception caught");
@@ -44,8 +44,8 @@ module EXCEPTION_MODULE_TB();
         in1 = `_NAN_0;
 
         //When one input is sNAN, all 4 elementary operations must yield exception
-        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE)
-          $display("Pass: Exceptions for input 0 NAN caught correctly");
+        assert (out0 === 1'b1 && out1 === 1'b1 && out2 === 1'b1 && out3 === 1'b1 && fp_exce_0 === `_sNAN_EXCE && fp_exce_1 === `_sNAN_EXCE && fp_exce_2 === `_sNAN_EXCE && fp_exce_3 === `_sNAN_EXCE)
+          $display("Pass: Exceptions for input 1 NAN caught correctly");
         else
           $display("Fail: No exception caught");
 
