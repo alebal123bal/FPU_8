@@ -21,16 +21,19 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     wire is_INF_A;    //Output of the CHECK_INF module for first input
     wire is_INF_B;    //Output of the CHECK_INF module for second input
 
-    CHECK_NAN nan_checker_A(OP_A, is_NaN_A, qs_NaN_A);
-    CHECK_NAN nan_checker_B(OP_B, is_NaN_B, qs_NaN_B);
-
     CHECK_ZERO zero_checker_A(OP_A, is_ZERO_A);
     CHECK_ZERO zero_checker_B(OP_B, is_ZERO_B);
 
     CHECK_INF inf_checker_A(OP_A, is_INF_A);
     CHECK_INF inf_checker_B(OP_B, is_INF_B);
 
+    assign is_NaN_A = is_nan(OP_A);
+    assign is_NaN_B = is_nan(OP_B);
+    assign qs_NaN_A = qs_nan(OP_A);
+    assign qs_NaN_B = qs_nan(OP_B);
+    
     always @(*) begin
+
         case (FP_OPERATION)
             //Addition exception: +inf -inf is undef in any order, but +inf +inf is valid
             `_ADDITION: if (is_NaN_A || is_NaN_B) begin
