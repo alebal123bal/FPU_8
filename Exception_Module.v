@@ -21,9 +21,6 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     wire is_INF_A;    //Output of the CHECK_INF module for first input
     wire is_INF_B;    //Output of the CHECK_INF module for second input
 
-    CHECK_INF inf_checker_A(OP_A, is_INF_A);
-    CHECK_INF inf_checker_B(OP_B, is_INF_B);
-
     assign is_NaN_A = is_nan(OP_A);
     assign is_NaN_B = is_nan(OP_B);
     assign qs_NaN_A = qs_nan(OP_A);
@@ -31,6 +28,9 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
 
     assign is_ZERO_A = is_zero(OP_A);
     assign is_ZERO_B = is_zero(OP_B);
+
+    assign is_INF_A = is_inf(OP_A);
+    assign is_INF_B = is_inf(OP_B);
 
     always @(*) begin
 
