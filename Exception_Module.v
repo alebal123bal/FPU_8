@@ -9,20 +9,17 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     output reg OP_IS_EXCEPTION;
     output reg[2:0] FP_EXCE;
 
-    wire is_NaN_A;    //Output of the CHECK_NAN module for first input: is it NaN
-    wire is_NaN_B;    //Output of the CHECK_NAN module for second input: is it NaN
+    wire is_NaN_A;    //is it NaN for first input 
+    wire is_NaN_B;    //is it NaN for second input
 
-    wire qs_NaN_A;    //Output of the CHECK_NAN module for first input: type of NaN
-    wire qs_NaN_B;    //Output of the CHECK_NAN module for second input: type of NaN
+    wire qs_NaN_A;    //type of NaN (Quiet or Signalling) for first input
+    wire qs_NaN_B;    //type of NaN (Quiet or Signalling) for second input
 
     wire is_ZERO_A;    //Output of the CHECK_ZERO module for first input
     wire is_ZERO_B;    //Output of the CHECK_ZERO module for second input
 
     wire is_INF_A;    //Output of the CHECK_INF module for first input
     wire is_INF_B;    //Output of the CHECK_INF module for second input
-
-    CHECK_ZERO zero_checker_A(OP_A, is_ZERO_A);
-    CHECK_ZERO zero_checker_B(OP_B, is_ZERO_B);
 
     CHECK_INF inf_checker_A(OP_A, is_INF_A);
     CHECK_INF inf_checker_B(OP_B, is_INF_B);
@@ -31,7 +28,10 @@ module EXCEPTION_MODULE(FP_OPERATION, OP_A, OP_B, OP_IS_EXCEPTION, FP_EXCE);
     assign is_NaN_B = is_nan(OP_B);
     assign qs_NaN_A = qs_nan(OP_A);
     assign qs_NaN_B = qs_nan(OP_B);
-    
+
+    assign is_ZERO_A = is_zero(OP_A);
+    assign is_ZERO_B = is_zero(OP_B);
+
     always @(*) begin
 
         case (FP_OPERATION)
